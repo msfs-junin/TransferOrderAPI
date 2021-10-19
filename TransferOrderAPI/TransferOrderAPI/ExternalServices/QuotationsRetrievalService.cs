@@ -9,19 +9,23 @@ using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace API.Services
+namespace API.ExternalServices
 {
     public class QuotationsRetrievalService : BackgroundService
     {
         private readonly ILogger<QuotationsRetrievalService> _logger;
         private readonly string _quotationApiKey = null;
 
-        public QuotationsRetrievalService(ILogger<QuotationsRetrievalService> logger)
+        public QuotationsRetrievalService(IServiceProvider services,
+            ILogger<QuotationsRetrievalService> logger)
         {
+            Services = services;
             _logger = logger;
             //TODO Inyectar
             _quotationApiKey = "1124f8b1c4eee98fee0c86571cfd487c";
         }
+
+        public IServiceProvider Services { get; }
 
         protected override async Task ExecuteAsync(CancellationToken stoppingToken)
         {
