@@ -6,6 +6,6 @@ namespace Core.Interfaces
 {
     public interface ICurrencyQuotationRepository
     {
-        bool saveQuotations(dynamic quotes);
+        bool SaveQuotations(dynamic quotes);
     }
 }

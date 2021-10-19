@@ -1,4 +1,6 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using Core.Entities;
+using Core.Interfaces;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
@@ -42,7 +44,14 @@ namespace API.ExternalServices
             var apiResponse = http.GetAsync(url).Result.Content.ReadAsStringAsync().Result;
             if (apiResponse != "")
             {
-               
+                var datos = JsonConvert.DeserializeObject<APIResponse>(apiResponse);
+                using (var scope = Services.CreateScope())
+                {
+                    var scopedProcessingService =
+                        scope.ServiceProvider
+                            .GetRequiredService<IScopedProcessingService>();
+                    await scopedProcessingService.DoWork(stoppingToken, datos.quotes);
+                }
             }
         }
 

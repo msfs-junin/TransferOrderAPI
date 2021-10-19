@@ -1,8 +1,13 @@
 using API.ExternalServices;
+using Core.Interfaces;
+using Core.Services;
+using Infrastructure.Contexts;
+using Infrastructure.Repositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -27,7 +32,13 @@ namespace TransferOrderAPI
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+            services.AddTransient<ICurrencyQuotationService, CurrencyQuotationService>();
+            services.AddTransient<ICurrencyQuotationRepository, CurrencyQuotationRepository>();
             services.AddHostedService<QuotationsRetrievalService>();
+            services.AddDbContext<CurrencyQuotationContext>(
+                options => options.UseSqlite(Configuration.GetConnectionString("cs"))
+            );
+            services.AddScoped<IScopedProcessingService, CurrencyQuotationService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
