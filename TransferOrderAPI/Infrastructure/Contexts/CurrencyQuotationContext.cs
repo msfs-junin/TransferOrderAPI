@@ -9,7 +9,10 @@ namespace Infrastructure.Contexts
     public class CurrencyQuotationContext : DbContext
     {
         public DbSet<CurrencyQuotation> CurrencyQuotations { get; set; }
-      
+
+        public CurrencyQuotationContext(DbContextOptions<CurrencyQuotationContext> options): base(options)
+        { }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);

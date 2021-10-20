@@ -34,11 +34,12 @@ namespace TransferOrderAPI
             services.AddControllers();
             services.AddTransient<ICurrencyQuotationService, CurrencyQuotationService>();
             services.AddTransient<ICurrencyQuotationRepository, CurrencyQuotationRepository>();
+            services.AddScoped<IScopedProcessingService, CurrencyQuotationService>();
             services.AddHostedService<QuotationsRetrievalService>();
             services.AddDbContext<CurrencyQuotationContext>(
                 options => options.UseSqlite(Configuration.GetConnectionString("cs"))
             );
-            services.AddScoped<IScopedProcessingService, CurrencyQuotationService>();
+            
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

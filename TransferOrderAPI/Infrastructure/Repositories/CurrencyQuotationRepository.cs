@@ -10,13 +10,15 @@ namespace Infrastructure.Repositories
 {
     public class CurrencyQuotationRepository : BaseRepository, ICurrencyQuotationRepository
     {
-        public CurrencyQuotationRepository(DbContext context) : base(context)
+        private CurrencyQuotationContext _context { get; set; }
+        public CurrencyQuotationRepository(CurrencyQuotationContext context) : base(context)
         {
+            _context = (CurrencyQuotationContext)context;
         }
 
         public bool SaveQuotations(dynamic quotations)
         {
-            using (var context = new CurrencyQuotationContext())
+            using (var context = _context)
             {
                 var quotation = new CurrencyQuotation
                 {
