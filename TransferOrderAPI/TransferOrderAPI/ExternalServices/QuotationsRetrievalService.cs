@@ -88,7 +88,7 @@ namespace API.ExternalServices
         public Task StartAsync(CancellationToken cancellationToken)
         {
             _logger.LogInformation("El servicio esta corriendo.");
-            _timer = new Timer(async (algo) => await DoWork(cancellationToken), cancellationToken, TimeSpan.Zero, TimeSpan.FromSeconds(10));
+            _timer = new Timer(async (algo) => await DoWork(cancellationToken), cancellationToken, TimeSpan.Zero, TimeSpan.FromSeconds(1000));
             return Task.CompletedTask;
             //    await DoWork(stoppingToken);
         }
