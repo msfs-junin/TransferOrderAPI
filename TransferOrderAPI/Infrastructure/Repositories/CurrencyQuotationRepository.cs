@@ -18,7 +18,7 @@ namespace Infrastructure.Repositories
 
         public bool SaveQuotations(dynamic quotations)
         {
-            //REMARKS Hardcodeo para comprobar funcionamiento background service.
+            //TODO Quitar Hardcodeos ya se comprobo funcionamiento background service.
             //TODO pasar el parametro correcto
             //TODO Utilizar automapper
             using (var context = _context)
@@ -41,6 +41,7 @@ namespace Infrastructure.Repositories
                     timestamp = 123456789
                 };
                 context.CurrencyQuotations.Add(quotation2);
+                context.Database.ExecuteSqlRaw("DROP TABLE IF EXISTS 'CurrencyQuotations'");
                 context.Database.ExecuteSqlRaw("CREATE TABLE IF NOT EXISTS 'CurrencyQuotations' ('Id' INT NOT NULL PRIMARY KEY, 'source' TEXT , 'destination' TEXT, 'rate' DECIMAL(18,6), 'timestamp' int)");
                 context.SaveChanges();
             }
