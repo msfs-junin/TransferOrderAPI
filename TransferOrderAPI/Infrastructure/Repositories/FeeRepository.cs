@@ -3,6 +3,7 @@ using Infrastructure.Contexts;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace Infrastructure.Repositories
@@ -17,7 +18,16 @@ namespace Infrastructure.Repositories
 
         public decimal getFeeForOperation(string sourceCurrency, string destinationCurrency)
         {
-            throw new NotImplementedException();
+            //TODO Completar, añadir timestamps y definiri bien la clasee Fee vs CurrencyQuotation
+            decimal rate = 0.0M;
+            using (var context = _context)
+            {
+                var fee = _context.Fees
+                                .Where(f => f.source == sourceCurrency && f.destination == destinationCurrency)
+                                .FirstOrDefault().rate;
+                rate = fee;
+            }
+            return rate;
         }
     }
 }

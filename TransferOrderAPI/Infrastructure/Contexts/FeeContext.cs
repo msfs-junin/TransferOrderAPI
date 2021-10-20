@@ -8,7 +8,7 @@ namespace Infrastructure.Contexts
 {
     public class FeeContext : DbContext
     {
-        public DbSet<Fee> CurrencyQuotations { get; set; }
+        public DbSet<Fee> Fees { get; set; }
 
         public FeeContext(DbContextOptions<FeeContext> options) : base(options)
         { }
