@@ -12,6 +12,7 @@ namespace Core.Services
     {
         private readonly ILogger<CurrencyQuotationService> _logger;
         private readonly ICurrencyQuotationRepository _currencyQuotationRepository;
+        private readonly IFeeRepository _feeRepository;
 
         public CurrencyQuotationService(
                                             ILogger<CurrencyQuotationService> logger,
@@ -37,5 +38,16 @@ namespace Core.Services
             _currencyQuotationRepository.SaveQuotations(quotations);
         }
 
+        public decimal calcularCotizacionNeta(string sourceCurrency, string destinationCurrency, decimal netAmmount)
+        {
+            //Buscar las cotizaciones actuales.
+            //buscar fee.
+            //Quiero que lleguen 10000 pesos argentinos
+            //Cuantos dolares tengo que depositar ?
+            decimal cotizacion = 10M;//_currencyQuotationRepository.getQuotation(sourceCurrency, destinationCurrency);
+            decimal feePercent = _feeRepository.getFeeForOperation(sourceCurrency, destinationCurrency);
+            decimal fee = netAmmount * (feePercent / 100.0M);
+            return (netAmmount + fee) * cotizacion;
+        }
     }
 }
