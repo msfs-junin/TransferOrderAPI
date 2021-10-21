@@ -1,0 +1,16 @@
+C:\Codigo\API\API\TransferOrderAPI\TransferOrderAPI\Infrastructure\bin\Debug\netcoreapp3.1\Infrastructure.deps.json
+C:\Codigo\API\API\TransferOrderAPI\TransferOrderAPI\Infrastructure\bin\Debug\netcoreapp3.1\Infrastructure.dll
+C:\Codigo\API\API\TransferOrderAPI\TransferOrderAPI\Infrastructure\bin\Debug\netcoreapp3.1\Infrastructure.pdb
+C:\Codigo\API\API\TransferOrderAPI\TransferOrderAPI\Infrastructure\obj\Debug\netcoreapp3.1\Infrastructure.csproj.AssemblyReference.cache
+C:\Codigo\API\API\TransferOrderAPI\TransferOrderAPI\Infrastructure\obj\Debug\netcoreapp3.1\Infrastructure.GeneratedMSBuildEditorConfig.editorconfig
+C:\Codigo\API\API\TransferOrderAPI\TransferOrderAPI\Infrastructure\obj\Debug\netcoreapp3.1\Infrastructure.AssemblyInfoInputs.cache
+C:\Codigo\API\API\TransferOrderAPI\TransferOrderAPI\Infrastructure\obj\Debug\netcoreapp3.1\Infrastructure.AssemblyInfo.cs
+C:\Codigo\API\API\TransferOrderAPI\TransferOrderAPI\Infrastructure\obj\Debug\netcoreapp3.1\Infrastructure.csproj.CoreCompileInputs.cache
+C:\Codigo\API\API\TransferOrderAPI\TransferOrderAPI\Infrastructure\obj\Debug\netcoreapp3.1\Infrastructure.dll
+C:\Codigo\API\API\TransferOrderAPI\TransferOrderAPI\Infrastructure\obj\Debug\netcoreapp3.1\Infrastructure.pdb
+C:\Codigo\API\API\TransferOrderAPI\TransferOrderAPI\Infrastructure\bin\Debug\netcoreapp3.1\Core.dll
+C:\Codigo\API\API\TransferOrderAPI\TransferOrderAPI\Infrastructure\bin\Debug\netcoreapp3.1\Core.pdb
+C:\Codigo\API\API\TransferOrderAPI\TransferOrderAPI\Infrastructure\obj\Debug\netcoreapp3.1\Infrastructure.csproj.CopyComplete
+C:\Codigo\API\API\TransferOrderAPI\TransferOrderAPI\Infrastructure\bin\Debug\netcoreapp3.1\Infrastructure.runtimeconfig.json
+C:\Codigo\API\API\TransferOrderAPI\TransferOrderAPI\Infrastructure\bin\Debug\netcoreapp3.1\Infrastructure.runtimeconfig.dev.json
+C:\Codigo\API\API\TransferOrderAPI\TransferOrderAPI\Infrastructure\obj\Debug\netcoreapp3.1\Infrastructure.genruntimeconfig.cache

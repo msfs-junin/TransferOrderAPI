@@ -1,0 +1,12 @@
+C:\Codigo\API\API\TransferOrderAPI\TransferOrderAPI\Core\bin\Debug\netcoreapp3.1\Core.deps.json
+C:\Codigo\API\API\TransferOrderAPI\TransferOrderAPI\Core\bin\Debug\netcoreapp3.1\Core.dll
+C:\Codigo\API\API\TransferOrderAPI\TransferOrderAPI\Core\bin\Debug\netcoreapp3.1\Core.pdb
+C:\Codigo\API\API\TransferOrderAPI\TransferOrderAPI\Core\obj\Debug\netcoreapp3.1\Core.GeneratedMSBuildEditorConfig.editorconfig
+C:\Codigo\API\API\TransferOrderAPI\TransferOrderAPI\Core\obj\Debug\netcoreapp3.1\Core.AssemblyInfoInputs.cache
+C:\Codigo\API\API\TransferOrderAPI\TransferOrderAPI\Core\obj\Debug\netcoreapp3.1\Core.AssemblyInfo.cs
+C:\Codigo\API\API\TransferOrderAPI\TransferOrderAPI\Core\obj\Debug\netcoreapp3.1\Core.csproj.CoreCompileInputs.cache
+C:\Codigo\API\API\TransferOrderAPI\TransferOrderAPI\Core\obj\Debug\netcoreapp3.1\Core.dll
+C:\Codigo\API\API\TransferOrderAPI\TransferOrderAPI\Core\obj\Debug\netcoreapp3.1\Core.pdb
+C:\Codigo\API\API\TransferOrderAPI\TransferOrderAPI\Core\bin\Debug\netcoreapp3.1\Core.runtimeconfig.json
+C:\Codigo\API\API\TransferOrderAPI\TransferOrderAPI\Core\bin\Debug\netcoreapp3.1\Core.runtimeconfig.dev.json
+C:\Codigo\API\API\TransferOrderAPI\TransferOrderAPI\Core\obj\Debug\netcoreapp3.1\Core.genruntimeconfig.cache

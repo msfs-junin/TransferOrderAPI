@@ -9,5 +9,6 @@ namespace Core.Interfaces
     {
         void AddTransferOrder(TransferOrder transferOrder);
         bool Save();
+        IEnumerable<TransferOrder> GetTransferOrders();
     }
 }
