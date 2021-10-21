@@ -8,12 +8,12 @@ using System.Text;
 
 namespace API.Repositories
 {
-    public class CurrencyQuotationRepository : BaseRepository, ICurrencyQuotationRepository
+    public class CurrencyQuotationRepository : ICurrencyQuotationRepository, IDisposable
     {
-        private CurrencyQuotationContext _context { get; set; }
-        public CurrencyQuotationRepository(CurrencyQuotationContext context) : base(context)
+        private readonly CurrencyQuotationContext _context;
+        public CurrencyQuotationRepository(CurrencyQuotationContext context) 
         {
-            _context = (CurrencyQuotationContext)context;
+            _context = context ?? throw new ArgumentNullException(nameof(context));
         }
 
         public bool SaveQuotations(dynamic quotations)
@@ -23,29 +23,38 @@ namespace API.Repositories
             //TODO Utilizar automapper
             using (var context = _context)
             {
-                var quotation = new CurrencyQuotation
+                foreach (var algo in quotations)
                 {
-                    Id = 6,
-                    source = "USD",
-                    destination = "ARS",
-                    rate = 99.235597M,
-                    timestamp = 123456789
-                };
-                context.CurrencyQuotations.Add(quotation);
-                var quotation2 = new CurrencyQuotation
-                {
-                    Id = 7,
-                    source = "ARS",
-                    destination = "USD",
-                    rate = 0.010077M,
-                    timestamp = 123456789
-                };
-                context.CurrencyQuotations.Add(quotation2);
-                context.Database.ExecuteSqlRaw("DROP TABLE IF EXISTS 'CurrencyQuotations'");
-                context.Database.ExecuteSqlRaw("CREATE TABLE IF NOT EXISTS 'CurrencyQuotations' ('Id' INT NOT NULL PRIMARY KEY, 'source' TEXT , 'destination' TEXT, 'rate' DECIMAL(18,6), 'timestamp' int)");
+                    var quotation = new CurrencyQuotation
+                    {
+                        //Id = new Guid(""),
+                        source = algo.Key.Substring(0, 3),
+                        destination = algo.Key.Substring(3, 3),
+                        rate = algo.Value,
+                        timestamp = 123456789
+                    };
+                    context.CurrencyQuotations.Add(quotation);
+                }
+               // context.CurrencyQuotations.Add(quotation2);
+                //context.Database.ExecuteSqlRaw("DROP TABLE IF EXISTS 'CurrencyQuotations'");
+                //context.Database.ExecuteSqlRaw("CREATE TABLE IF NOT EXISTS 'CurrencyQuotations' ('Id' INT NOT NULL PRIMARY KEY, 'source' TEXT , 'destination' TEXT, 'rate' DECIMAL(18,6), 'timestamp' int)");
                 context.SaveChanges();
             }
             return true;
+        }
+
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                // dispose resources when needed
+            }
         }
 
     }

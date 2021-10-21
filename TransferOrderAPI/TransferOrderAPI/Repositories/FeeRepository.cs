@@ -8,13 +8,13 @@ using System.Text;
 
 namespace API.Repositories
 {
-    public class FeeRepository : BaseRepository, IFeeRepository
+    public class FeeRepository : IFeeRepository, IDisposable
     {
-        private FeeContext _context { get; set; }
+        private readonly FeeContext _context; 
         
-        public FeeRepository(FeeContext context) : base(context)
+        public FeeRepository(FeeContext context) 
         {
-            _context = (FeeContext)context;
+            _context = context ?? throw new ArgumentNullException(nameof(context));
         }
 
         public decimal getFeeForOperation(string sourceCurrency, string destinationCurrency)
@@ -29,6 +29,20 @@ namespace API.Repositories
                 rate = fee;
             }
             return rate;
+        }
+
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                // dispose resources when needed
+            }
         }
     }
 }
