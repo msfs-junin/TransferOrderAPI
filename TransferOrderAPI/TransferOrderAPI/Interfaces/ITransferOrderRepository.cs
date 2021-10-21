@@ -10,5 +10,6 @@ namespace API.Interfaces
         void AddTransferOrder(TransferOrder transferOrder);
         bool Save();
         IEnumerable<TransferOrder> GetTransferOrders();
+        TransferOrder GetTransferOrder(Guid transferOrderId);
     }
 }

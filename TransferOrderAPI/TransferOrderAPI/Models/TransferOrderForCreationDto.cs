@@ -7,9 +7,9 @@ namespace API.Models
 {
     public class TransferOrderForCreationDto
     {
-        public string sourceCurrency;
-        public string destinationCurrency;
-        public decimal netAmmount;
-        public decimal grossAmmount;
+        public string sourceCurrency { get; set; }
+        public string destinationCurrency { get; set; }
+        public decimal netAmmount { get; set; }
+        public decimal grossAmmount { get; set; }
     }
 }

@@ -27,6 +27,18 @@ namespace API.Controllers
                 throw new ArgumentNullException(nameof(mapper));
         }
 
+        [HttpGet("{transferOrderId}", Name = "GetTransferOrder")]
+        public IActionResult GetTransferOrder(Guid transferOrderId)
+        {
+            var transferOrderFromRepo = _transferOrderRepository.GetTransferOrder(transferOrderId);
+
+            if (transferOrderFromRepo == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(_mapper.Map<TransferOrderDto>(transferOrderFromRepo));
+        }
 
         [HttpGet]
         public ActionResult<IEnumerable<TransferOrderDto>> GetTransferOrders()
@@ -34,6 +46,20 @@ namespace API.Controllers
             var transferOrdersFromRepo = _transferOrderRepository.GetTransferOrders();
             return Ok(_mapper.Map<IEnumerable<TransferOrderDto>>(transferOrdersFromRepo));
         }
+
+        [HttpPost]
+        public ActionResult<TransferOrderDto> CreateTransferOrder(TransferOrderForCreationDto transferOrder)
+        {
+            var transferOrderEntity = _mapper.Map<Entities.TransferOrder>(transferOrder);
+            _transferOrderRepository.AddTransferOrder(transferOrderEntity);
+            _transferOrderRepository.Save();
+
+            var transferOrderToReturn = _mapper.Map<TransferOrderDto>(transferOrderEntity);
+            return CreatedAtRoute("GetTransferOrder",
+                new { transferOrderId = transferOrderToReturn.Id },
+                transferOrderToReturn);
+        }
+
 
     }
 }

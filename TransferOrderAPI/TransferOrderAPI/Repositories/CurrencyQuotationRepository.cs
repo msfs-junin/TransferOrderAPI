@@ -35,9 +35,6 @@ namespace API.Repositories
                     };
                     context.CurrencyQuotations.Add(quotation);
                 }
-               // context.CurrencyQuotations.Add(quotation2);
-                //context.Database.ExecuteSqlRaw("DROP TABLE IF EXISTS 'CurrencyQuotations'");
-                //context.Database.ExecuteSqlRaw("CREATE TABLE IF NOT EXISTS 'CurrencyQuotations' ('Id' INT NOT NULL PRIMARY KEY, 'source' TEXT , 'destination' TEXT, 'rate' DECIMAL(18,6), 'timestamp' int)");
                 context.SaveChanges();
             }
             return true;

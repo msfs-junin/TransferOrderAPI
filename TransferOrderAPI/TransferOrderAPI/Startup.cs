@@ -36,33 +36,10 @@ namespace TransferOrderAPI
             services.AddTransient<ICurrencyQuotationRepository, CurrencyQuotationRepository>();
             services.AddScoped<IScopedProcessingService, CurrencyQuotationService>();
             services.AddHostedService<QuotationsRetrievalService>();
-
-            //services.AddDbContext<CurrencyQuotationContext>(
-            //    options => options.UseSqlite(Configuration.GetConnectionString("cs"))
-            //);
-
-            services.AddDbContext<CurrencyQuotationContext>(options =>
-            {
-                options.UseSqlServer(
-                    @"Server=(localdb)\mssqllocaldb;Database=CurrencyQuotationDB;Trusted_Connection=True;");
-            });
-
-
-
+            services.AddDbContext<CurrencyQuotationContext>(options => options.UseSqlServer(@"Server=(localdb)\mssqllocaldb;Database=CurrencyQuotationDB;Trusted_Connection=True;"));
+            services.AddDbContext<TransferOrderContext>(options => options.UseSqlServer(@"Server=(localdb)\mssqllocaldb;Database=TransferOrderDB;Trusted_Connection=True;"));
             services.AddScoped<ITransferOrderRepository, TransferOrderRepository>();
-            
-            //services.AddDbContext<TransferOrderContext>(
-            //    options => options.UseSqlite(Configuration.GetConnectionString("cs"))
-            //);
-
-
-            services.AddDbContext<TransferOrderContext>(
-                options => options.UseSqlServer(@"Server=(localdb)\mssqllocaldb;Database=TransferOrderDB;Trusted_Connection=True;")
-            );
-
-
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
-            //options.UseSqlServer(@"Server=(localdb)\mssqllocaldb;Database=CourseLibraryDB;Trusted_Connection=True;");
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

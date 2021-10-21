@@ -49,5 +49,15 @@ namespace API.Repositories
         {
             return _context.TransferOrders.ToList<TransferOrder>();
         }
+
+        public TransferOrder GetTransferOrder(Guid transferOrderId)
+        {
+            if (transferOrderId == Guid.Empty)
+            {
+                throw new ArgumentNullException(nameof(transferOrderId));
+            }
+
+            return _context.TransferOrders.FirstOrDefault(a => a.Id == transferOrderId);
+        }
     }
 }
