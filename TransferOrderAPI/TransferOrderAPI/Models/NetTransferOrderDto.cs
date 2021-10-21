@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace API.Models
 {
-    public class TransferOrderDto
+    public class NetTransferOrderDto
     {
         public Guid Id { get; set; }
         public string sourceCurrency { get; set; }

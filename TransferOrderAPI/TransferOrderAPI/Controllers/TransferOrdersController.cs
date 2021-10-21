@@ -40,18 +40,19 @@ namespace API.Controllers
                 return NotFound();
             }
 
-            return Ok(_mapper.Map<TransferOrderDto>(transferOrderFromRepo));
+            return Ok(_mapper.Map<NetTransferOrderDto>(transferOrderFromRepo));
         }
 
         [HttpGet]
-        public ActionResult<IEnumerable<TransferOrderDto>> GetTransferOrders()
+        [HttpHead]
+        public ActionResult<IEnumerable<NetTransferOrderDto>> GetTransferOrders()
         {
             var transferOrdersFromRepo = _transferOrderRepository.GetTransferOrders();
-            return Ok(_mapper.Map<IEnumerable<TransferOrderDto>>(transferOrdersFromRepo));
+            return Ok(_mapper.Map<IEnumerable<NetTransferOrderDto>>(transferOrdersFromRepo));
         }
 
         [HttpPost]
-        public ActionResult<TransferOrderDto> CreateTransferOrder(TransferOrderForCreationDto transferOrder)
+        public ActionResult<NetTransferOrderDto> CreateTransferOrder(NetTransferOrderForCreationDto transferOrder)
         {
             //TODO REFACTOR OJO NO VA EN CONTROLLER
             //TODO Recordar mapear para que internal server error devuelva 500 siempre, que no se vean detalles del error desde fuera.
@@ -60,12 +61,17 @@ namespace API.Controllers
             _transferOrderRepository.AddTransferOrder(transferOrderEntity);
             _transferOrderRepository.Save();
 
-            var transferOrderToReturn = _mapper.Map<TransferOrderDto>(transferOrderEntity);
+            var transferOrderToReturn = _mapper.Map<NetTransferOrderDto>(transferOrderEntity);
             return CreatedAtRoute("GetTransferOrder",
                 new { transferOrderId = transferOrderToReturn.Id },
                 transferOrderToReturn);
         }
 
-
+        [HttpOptions]
+        public IActionResult GetTransferOrdersOptions()
+        {
+            Response.Headers.Add("Allow", "GET,OPTIONS,POST");
+            return Ok();
+        }
     }
 }

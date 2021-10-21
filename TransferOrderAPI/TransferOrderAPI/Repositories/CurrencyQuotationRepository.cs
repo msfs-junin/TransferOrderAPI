@@ -57,7 +57,12 @@ namespace API.Repositories
 
         public decimal getQuotation(string sourceCurrency, string destinationCurrency)
         {
-            return _context.CurrencyQuotations.Where(q => q.source == sourceCurrency && q.destination == destinationCurrency).FirstOrDefault().rate;
+            var quote = _context.CurrencyQuotations.Where(q => q.source == sourceCurrency && q.destination == destinationCurrency).FirstOrDefault();
+            if (quote == null)
+            {
+                throw new ArgumentNullException(nameof(quote));
+            }
+            return quote.rate;
         }
     }
 }

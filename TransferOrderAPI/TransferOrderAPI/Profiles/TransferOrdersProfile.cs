@@ -11,8 +11,8 @@ namespace API.Profiles
     {
         public TransferOrdersProfile()
         {
-            CreateMap<TransferOrder, Models.TransferOrderDto>();
-            CreateMap<Models.TransferOrderForCreationDto, TransferOrder>();
+            CreateMap<TransferOrder, Models.NetTransferOrderDto>();
+            CreateMap<Models.NetTransferOrderForCreationDto, TransferOrder>();
         }
     }
 }
