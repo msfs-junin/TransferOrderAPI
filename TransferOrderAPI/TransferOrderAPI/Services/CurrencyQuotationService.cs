@@ -44,8 +44,8 @@ namespace API.Services
             //buscar fee.
             //Quiero que lleguen 10000 pesos argentinos
             //Cuantos dolares tengo que depositar ?
-            decimal cotizacion = 10M;//_currencyQuotationRepository.getQuotation(sourceCurrency, destinationCurrency);
-            decimal feePercent = _feeRepository.getFeeForOperation(sourceCurrency, destinationCurrency);
+            decimal cotizacion = _currencyQuotationRepository.getQuotation(sourceCurrency, destinationCurrency);
+            decimal feePercent = 10.0M;//_feeRepository.getFeeForOperation(sourceCurrency, destinationCurrency);
             decimal fee = netAmmount * (feePercent / 100.0M);
             return (netAmmount + fee) * cotizacion;
         }

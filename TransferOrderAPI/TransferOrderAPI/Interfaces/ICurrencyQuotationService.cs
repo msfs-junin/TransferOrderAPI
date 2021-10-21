@@ -7,5 +7,6 @@ namespace API.Interfaces
     public interface ICurrencyQuotationService
     {
         void guardarCotizaciones(IEnumerable<dynamic> quotes);
+        decimal calcularCotizacionNeta(string sourceCurrency, string destinationCurrency, decimal netAmmount);
     }
 }

@@ -15,12 +15,15 @@ namespace API.Controllers
     [ApiController]
     public class TransferOrdersController : ControllerBase
     {
+        private readonly ICurrencyQuotationService _currencyQuotationService;
         private readonly ITransferOrderRepository _transferOrderRepository;
         private readonly IMapper _mapper;
 
-        public TransferOrdersController(ITransferOrderRepository transferOrderRepository,
+        public TransferOrdersController(ICurrencyQuotationService currencyQuotationService, 
+           ITransferOrderRepository transferOrderRepository,
            IMapper mapper)
         {
+            _currencyQuotationService = currencyQuotationService;
             _transferOrderRepository = transferOrderRepository ??
                 throw new ArgumentNullException(nameof(transferOrderRepository));
             _mapper = mapper ??
@@ -50,6 +53,9 @@ namespace API.Controllers
         [HttpPost]
         public ActionResult<TransferOrderDto> CreateTransferOrder(TransferOrderForCreationDto transferOrder)
         {
+            //TODO REFACTOR OJO NO VA EN CONTROLLER
+            //TODO Recordar mapear para que internal server error devuelva 500 siempre, que no se vean detalles del error desde fuera.
+            transferOrder.grossAmmount = _currencyQuotationService.calcularCotizacionNeta(transferOrder.sourceCurrency, transferOrder.destinationCurrency, transferOrder.netAmmount);
             var transferOrderEntity = _mapper.Map<Entities.TransferOrder>(transferOrder);
             _transferOrderRepository.AddTransferOrder(transferOrderEntity);
             _transferOrderRepository.Save();

@@ -7,5 +7,6 @@ namespace API.Interfaces
     public interface ICurrencyQuotationRepository
     {
         bool SaveQuotations(dynamic quotes);
+        decimal getQuotation(string sourceCurrency, string destinationCurrency);
     }
 }

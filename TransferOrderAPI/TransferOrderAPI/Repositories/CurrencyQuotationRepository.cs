@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Linq;
 
 namespace API.Repositories
 {
@@ -54,5 +55,9 @@ namespace API.Repositories
             }
         }
 
+        public decimal getQuotation(string sourceCurrency, string destinationCurrency)
+        {
+            return _context.CurrencyQuotations.Where(q => q.source == sourceCurrency && q.destination == destinationCurrency).FirstOrDefault().rate;
+        }
     }
 }
