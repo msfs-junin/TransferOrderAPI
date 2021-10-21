@@ -50,13 +50,14 @@ namespace TransferOrderAPI
                 app.UseDeveloperExceptionPage();
                 context.Database.EnsureCreated();
             }
+            else
+            {
+                app.UseExceptionHandler("/error");
+            }
 
             app.UseHttpsRedirection();
-
             app.UseRouting();
-
             app.UseAuthorization();
-
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
