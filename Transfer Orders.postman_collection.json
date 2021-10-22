@@ -1,0 +1,240 @@
+{
+	"info": {
+		"_postman_id": "5ed221a8-aa9b-4368-86f8-e303596fa5ba",
+		"name": "Transfer Orders",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "POST TransferOrder Lanzando Error",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"content-type": true
+				}
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "text/plain",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"destinationCurrency\": \"ARS\",\r\n    \"sourceCurrency\": \"BOB\",\r\n    \"netAmmount\": 10000.00,\r\n    \"grossAmmount\": 0.0\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:44378/api/TransferOrders",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44378",
+					"path": [
+						"api",
+						"TransferOrders"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST TransferOrder Net",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"content-type": true
+				}
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "text/plain",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"destinationCurrency\": \"ARS\",\r\n    \"sourceCurrency\": \"USD\",\r\n    \"netAmmount\": 10000,\r\n    \"grossAmmount\": 0,\r\n    \"isNetTransferType\": true\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:44378/api/TransferOrders",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44378",
+					"path": [
+						"api",
+						"TransferOrders"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST TransferOrder Gross",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"content-type": true
+				}
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "text/plain",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"destinationCurrency\": \"ARS\",\r\n    \"sourceCurrency\": \"USD\",\r\n    \"netAmmount\": 0,\r\n    \"grossAmmount\": 10000,\r\n    \"isNetTransferType\": false\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:44378/api/TransferOrders",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44378",
+					"path": [
+						"api",
+						"TransferOrders"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET TransferOrders",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:44378/api/TransferOrders",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44378",
+					"path": [
+						"api",
+						"TransferOrders"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET Transfer Order",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": null
+			},
+			"response": []
+		},
+		{
+			"name": "Get Transfer Order (Not exists)",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": null
+			},
+			"response": []
+		},
+		{
+			"name": "HEAD Transfer Orders",
+			"request": {
+				"method": "HEAD",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:44378/api/TransferOrders",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44378",
+					"path": [
+						"api",
+						"TransferOrders"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "OPTIONS Transfer Orders",
+			"request": {
+				"method": "OPTIONS",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:44378/api/TransferOrders",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44378",
+					"path": [
+						"api",
+						"TransferOrders"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
