@@ -34,11 +34,21 @@ namespace TransferOrderAPI
             services.AddControllers();
             services.AddTransient<ICurrencyQuotationService, CurrencyQuotationService>();
             services.AddTransient<ICurrencyQuotationRepository, CurrencyQuotationRepository>();
+            
+            
+
             services.AddScoped<IScopedProcessingService, CurrencyQuotationService>();
             services.AddHostedService<QuotationsRetrievalService>();
+            
+            services.AddScoped<ITransferOrderRepository, TransferOrderRepository>();
+            services.AddScoped<IFeeRepository, FeeRepository>();
+
             services.AddDbContext<CurrencyQuotationContext>(options => options.UseSqlServer(@"Server=(localdb)\mssqllocaldb;Database=CurrencyQuotationDB;Trusted_Connection=True;"));
             services.AddDbContext<TransferOrderContext>(options => options.UseSqlServer(@"Server=(localdb)\mssqllocaldb;Database=TransferOrderDB;Trusted_Connection=True;"));
-            services.AddScoped<ITransferOrderRepository, TransferOrderRepository>();
+            services.AddDbContext<FeeContext>(options => options.UseSqlServer(@"Server=(localdb)\mssqllocaldb;Database=FeeDB;Trusted_Connection=True;"));
+            
+            
+            
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
         }
 

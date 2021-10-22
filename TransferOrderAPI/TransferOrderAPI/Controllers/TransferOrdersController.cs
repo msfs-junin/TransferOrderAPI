@@ -55,8 +55,14 @@ namespace API.Controllers
         public ActionResult<NetTransferOrderDto> CreateTransferOrder(NetTransferOrderForCreationDto transferOrder)
         {
             //TODO REFACTOR OJO NO VA EN CONTROLLER
-            //TODO Recordar mapear para que internal server error devuelva 500 siempre, que no se vean detalles del error desde fuera.
-            transferOrder.grossAmmount = _currencyQuotationService.calcularCotizacionNeta(transferOrder.sourceCurrency, transferOrder.destinationCurrency, transferOrder.netAmmount);
+            if (transferOrder.isNetTransferType)
+            {
+                transferOrder.grossAmmount = _currencyQuotationService.calcularCotizacionNeta(transferOrder.sourceCurrency, transferOrder.destinationCurrency, transferOrder.netAmmount);
+            }
+            else
+            {
+                transferOrder.netAmmount = _currencyQuotationService.calcularCotizacionBruta(transferOrder.sourceCurrency, transferOrder.destinationCurrency, transferOrder.grossAmmount);
+            }
             var transferOrderEntity = _mapper.Map<Entities.TransferOrder>(transferOrder);
             _transferOrderRepository.AddTransferOrder(transferOrderEntity);
             _transferOrderRepository.Save();

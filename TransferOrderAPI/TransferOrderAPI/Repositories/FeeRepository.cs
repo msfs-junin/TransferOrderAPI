@@ -21,13 +21,11 @@ namespace API.Repositories
         {
             //TODO Completar, añadir timestamps y definiri bien la clasee Fee vs CurrencyQuotation
             decimal rate = 0.0M;
-            using (var context = _context)
-            {
-                var fee = _context.Fees
-                                .Where(f => f.source == sourceCurrency && f.destination == destinationCurrency)
-                                .FirstOrDefault().rate;
-                rate = fee;
-            }
+            //TODO Reparar base.
+            //var fee = _context.Fees
+            //                .Where(f => f.source == sourceCurrency && f.destination == destinationCurrency)
+            //                .FirstOrDefault().rate;
+            rate = 10.0M;// fee;
             return rate;
         }
 

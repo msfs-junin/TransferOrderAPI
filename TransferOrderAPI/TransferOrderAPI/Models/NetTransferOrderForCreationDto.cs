@@ -11,5 +11,6 @@ namespace API.Models
         public string destinationCurrency { get; set; }
         public decimal netAmmount { get; set; }
         public decimal grossAmmount { get; set; }
+        public bool isNetTransferType { get; set; }
     }
 }

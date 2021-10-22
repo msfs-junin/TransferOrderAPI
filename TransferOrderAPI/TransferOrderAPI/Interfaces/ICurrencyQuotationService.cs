@@ -8,5 +8,6 @@ namespace API.Interfaces
     {
         void guardarCotizaciones(IEnumerable<dynamic> quotes);
         decimal calcularCotizacionNeta(string sourceCurrency, string destinationCurrency, decimal netAmmount);
+        decimal calcularCotizacionBruta(string sourceCurrency, string destinationCurrency, decimal grossAmmount);
     }
 }

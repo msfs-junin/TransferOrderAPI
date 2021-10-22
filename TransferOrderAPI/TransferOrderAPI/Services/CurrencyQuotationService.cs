@@ -16,11 +16,13 @@ namespace API.Services
 
         public CurrencyQuotationService(
                                             ILogger<CurrencyQuotationService> logger,
-                                            ICurrencyQuotationRepository currencyQuotationRepository
+                                            ICurrencyQuotationRepository currencyQuotationRepository,
+                                            IFeeRepository feeRepository
                                          )
         {
             _logger = logger;
             _currencyQuotationRepository = currencyQuotationRepository;
+            _feeRepository = feeRepository;
         }
 
         public Task DoWork(CancellationToken stoppingToken, dynamic quotes)
@@ -38,17 +40,27 @@ namespace API.Services
             _currencyQuotationRepository.SaveQuotations(quotations);
         }
 
+        private decimal obtenerCotizacion(string sourceCurrency, string destinationCurrency)
+        {
+            return _currencyQuotationRepository.getQuotation(sourceCurrency, destinationCurrency);
+        }
+
         public decimal calcularCotizacionNeta(string sourceCurrency, string destinationCurrency, decimal netAmmount)
         {
-            //Buscar las cotizaciones actuales.
-            //buscar fee.
-            //Quiero que lleguen 10000 pesos argentinos
-            //Cuantos dolares tengo que depositar ?
-            decimal cotizacion = _currencyQuotationRepository.getQuotation(sourceCurrency, destinationCurrency);
-            //TODO agregar manejo para cotizacion inexistente.
-            decimal feePercent = 10.0M;//_feeRepository.getFeeForOperation(sourceCurrency, destinationCurrency);
+            decimal cotizacion = obtenerCotizacion(sourceCurrency, destinationCurrency);
+            decimal feePercent = _feeRepository.getFeeForOperation(sourceCurrency, destinationCurrency);
             decimal fee = netAmmount * (feePercent / 100.0M);
             return (netAmmount + fee) * cotizacion;
+        }
+
+        public decimal calcularCotizacionBruta(string sourceCurrency, string destinationCurrency, decimal grossAmmount)
+        {
+            decimal cotizacion = obtenerCotizacion(sourceCurrency, destinationCurrency);
+            
+            decimal feePercent = _feeRepository.getFeeForOperation(sourceCurrency, destinationCurrency); //_feeRepository.getFeeForOperation(sourceCurrency, destinationCurrency);
+            decimal fee = grossAmmount * (feePercent / 100.0M);
+
+            return (grossAmmount - fee) * cotizacion;
         }
     }
 }

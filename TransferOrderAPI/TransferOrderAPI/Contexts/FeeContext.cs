@@ -17,7 +17,7 @@ namespace API.Contexts
         {
             base.OnModelCreating(modelBuilder);
             RelationalEntityTypeBuilderExtensions.ToTable<Fee>(modelBuilder.Entity<Fee>(), "Fees");
-            //new CurrencyQuotationEntityTypeConfiguration().Configure(modelBuilder.Entity<CurrencyQuotation>());
+            new FeeEntityTypeConfiguration().Configure(modelBuilder.Entity<Fee>());
         }
     }
 }
